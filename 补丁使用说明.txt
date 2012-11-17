@@ -1,0 +1,28 @@
+流量用完请把下面的复制到goagent/local/proxy.ini的appid段上
+(详见包内图片)
+每次是复制一组10个APPID 每天北京时间12点更新流量也就是每组每天10GB流量
+
+banzhangzhuanyong|chromesaiko|ippotsukobeta|smartladder1|smartladder2|smartladder3|smartladder4|smartladder6|smartladder7|smartladder8|
+
+smartladderchina|smartladderjapan|smartladderhongkong|smartladderkoera|smartladderuk|smartladderus|smartladdertaiwan|ilovesmartladder|smartladdercanada|jianiwoxiangni
+
+aitaiyokani|akb48daisukilove|diaoyudaobelongtochinasaiko|f360uck|flowerwakawaii|ftencentuck|kawaiiushionoserve|kawaiiushioplus|saosaiko|sekaiwakerei|
+
+kawaiiushio1|kawaiiushio|kawaiiushio2|kawaiiushio3|kawaiiushio4|kawaiiushio5|kawaiiushio6|kawaiiushio7|kawaiiushio8|kawaiiushio9
+
+baiduchrometieba|baidufirefoxtieba|chrome360q|chromeichi|chromelucky|chromeqq|chrometieba|fangbingxingtodie|window8saiko|yugongxisaiko|
+
+如果大家有不用的appid 欢迎捐赠
+
+邮箱 kawaiiushio@gmail.com
+
+非常感谢！
+
+Tips:Goagent SmartLadder Custom Edition 太长了
+现已经更名为 Goagent Plus
+
+本项目获得GFW认证访问不了请挂HTTPS
+
+https://code.google.com/p/smartladder/
+
+Copyleft 2012 Chrome吧
