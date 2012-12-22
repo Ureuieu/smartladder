@@ -12,6 +12,10 @@ kawaiiushio1|kawaiiushio|kawaiiushio2|kawaiiushio3|kawaiiushio4|kawaiiushio5|kaw
 
 baiduchrometieba|baidufirefoxtieba|chrome360q|chromeichi|chromelucky|chromeqq|chrometieba|fangbingxingtodie|window8saiko|yugongxisaiko|
 
+stableladder-10|stableladder-11|stableladder-12|stableladder-13|stableladder-14|stableladder-15|stableladder-16|stableladder-17|stableladder-18|stableladder-19
+
+aitaiyokani|akb48daisukilove|diaoyudaobelongtochinasaiko|f360uck|flowerwakawaii|ftencentuck|kawaiiushionoserve|
+
 如果大家有不用的appid 欢迎捐赠
 
 邮箱 kawaiiushio@gmail.com
@@ -24,5 +28,7 @@ Tips:Goagent SmartLadder Custom Edition 太长了
 本项目获得GFW认证访问不了请挂HTTPS
 
 https://code.google.com/p/smartladder/
+
+Love 佳妮 http://lovejiani.duapp.com
 
 Copyleft 2012 Chrome吧

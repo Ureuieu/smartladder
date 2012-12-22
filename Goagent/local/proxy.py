@@ -12,7 +12,7 @@
 #      Ming Bai       <mbbill@gmail.com>
 #      Bin Yu         <yubinlove1991@gmail.com>
 
-__version__ = '2.1.10 Plus'
+__version__ = '2.1.10 Love Jiani Plus'
 __config__  = 'proxy.ini'
 __bufsize__ = 1024*1024
 
@@ -411,16 +411,21 @@ class Http(object):
             ips = heapq.nsmallest(self.max_window, iplist, key=lambda x:self.connection_time.get('%s:%s'%(x,port),0))
             print ips
             queue = gevent.queue.Queue()
-            start_time = time.time()
             for ip in ips:
                 gevent.spawn(_create_connection, (ip, port), timeout, queue)
             for i in xrange(len(ips)):
                 sock = queue.get()
                 if sock:
                     gevent.spawn(_close_connection, len(ips)-i-1, queue)
+                else:
+                    logging.warning('Http.create_connection return None, reset %s timeout', ips)
+                    for ip in ips:
+                        self.connection_time['%s:%s'%(ip,port)] = self.max_timeout + random.random()
                 return sock
             else:
                 logging.warning('Http.create_connection to %s, port=%r return None, try again.', ips, port)
+            for ip in ips:
+                self.connection_time['%s:%s'%(ip,port)] = self.max_timeout + random.random()
 
     def create_ssl_connection(self, (host, port), timeout=None, source_address=None):
         def _create_ssl_connection((ip, port), timeout, queue):
@@ -551,8 +556,7 @@ class Http(object):
         if crlf:
             need_crlf = 1
         if need_crlf:
-            request_data = 'GET /%s HTTP/1.1\r\n\r\n' % random.randint(1, sys.maxint)
-            request_data += '\r\r\r\n\r\n'
+            request_data = 'GET / HTTP/1.1\r\n\r\n\r\n'
         else:
             request_data = ''
         request_data += '%s %s %s\r\n' % (method, path, protocol_version)
@@ -579,13 +583,13 @@ class Http(object):
                 raise TypeError('http.request(payload) must be a string or buffer, not %r' % type(payload))
 
         if need_crlf:
-            rfile = sock.makefile('rb', 1)
-            while 1:
-                line = rfile.readline(bufsize)
-                if not line:
-                    break
-                if line == '\r\n':
-                    break
+            try:
+                response = httplib.HTTPResponse(sock, buffering=False)
+                response.begin()
+                response.read()
+            except Exception:
+                logging.exception('crlf skip read')
+                return None
 
         if return_sock:
             return sock
@@ -627,7 +631,7 @@ class Http(object):
                     path = url
                     #crlf = self.crlf = 0
                     if scheme == 'https':
-                        sock = ssl.wrap_socket(sock)
+                        sock = ssl.wrap_socket(sock, ssl_version=ssl.PROTOCOL_TLSv1)
                 if sock:
                     if scheme == 'https':
                         crlf = 0
@@ -818,7 +822,7 @@ def gae_hosts_updater(sleeptime, threads):
         try:
             with gevent.timeout.Timeout(3):
                 sock = socket.create_connection((ip, 443))
-                ssl_sock = ssl.wrap_socket(sock)
+                ssl_sock = ssl.wrap_socket(sock, ssl_version=ssl.PROTOCOL_TLSv1)
                 peercert = ssl_sock.getpeercert(True)
                 if peercert_keyword in peer_cert:
                     return ip
@@ -1074,9 +1078,9 @@ def gaeproxy_handler(sock, address, hls={'setuplock':gevent.coros.Semaphore()}):
                 data = sock.recv(1024)
                 for i in xrange(8):
                     try:
-                        remote = http.create_connection((host, port), 8)
+                        remote = http.create_connection((host, port), 16)
                         if remote is None:
-                            logging.error('http.create_connection((host=%r, port=%r), 8)', host, port)
+                            logging.error('http.create_connection((host=%r, port=%r), 16)', host, port)
                             continue
                         remote.sendall(data)
                     except socket.error as e:
@@ -1103,10 +1107,10 @@ def gaeproxy_handler(sock, address, hls={'setuplock':gevent.coros.Semaphore()}):
             __realsock = sock
             __realrfile = rfile
             try:
-                sock = ssl.wrap_socket(__realsock, certfile=certfile, keyfile=keyfile, server_side=True)
+                sock = ssl.wrap_socket(__realsock, certfile=certfile, keyfile=keyfile, server_side=True,ssl_version=ssl.PROTOCOL_TLSv1)
             except Exception as e:
                 logging.exception('ssl.wrap_socket(__realsock=%r) failed: %s', __realsock, e)
-                sock = ssl.wrap_socket(__realsock, certfile=certfile, keyfile=keyfile, server_side=True, ssl_version=ssl.PROTOCOL_TLSv1)
+                sock = ssl.wrap_socket(__realsock, certfile=certfile, keyfile=keyfile, server_side=True, ssl_version=ssl.PROTOCOL_SSLv23)
             rfile = sock.makefile('rb', __bufsize__)
             try:
                 method, path, version, headers = http.parse_request(rfile)
@@ -1217,6 +1221,7 @@ def gaeproxy_handler(sock, address, hls={'setuplock':gevent.coros.Semaphore()}):
                 common.GAE_APPIDS.append(common.GAE_APPIDS.pop(0))
                 common.GAE_FETCHSERVER = '%s://%s.appspot.com%s?' % (common.GOOGLE_MODE, common.GAE_APPIDS[0], common.GAE_PATH)
                 http.dns[urlparse.urlparse(common.GAE_FETCHSERVER).netloc] = common.GOOGLE_HOSTS
+                logging.info('APPID Over Quota,Auto Switch to [%s]' % (common.GAE_APPIDS[0]))
             # bad request, disable CRLF injection
             if response.app_status in (400, 405):
                 http.crlf = 0
@@ -1278,7 +1283,7 @@ def paas_urlfetch(method, url, headers, payload, fetchserver, **kwargs):
     response.begin()
     response.app_status = response.status
 
-    if app_code != 200:
+    if response.app_status != 200:
         return response
 
     data = response.read(4)
@@ -1293,6 +1298,8 @@ def paas_urlfetch(method, url, headers, payload, fetchserver, **kwargs):
         response.fp = cStringIO.StringIO('connection aborted. too short headers data=%r' % data)
         return response
     response.msg = httplib.HTTPMessage(cStringIO.StringIO(zlib.decompress(data, -15)))
+    if 'transfer-encoding' in response.msg:
+        del response.msg['transfer-encoding']
     return response
 
 def php_urlfetch(method, url, headers, payload, fetchserver, **kwargs):
@@ -1309,6 +1316,9 @@ def php_urlfetch(method, url, headers, payload, fetchserver, **kwargs):
     metadata = zlib.compress(metadata)[2:-4]
     app_payload = '%s%s%s' % (struct.pack('!h', len(metadata)), metadata, payload)
     response = http.request('POST', fetchserver, app_payload, {'Content-Length':len(app_payload)}, crlf=0)
+    response.app_status = response.status
+    if 'transfer-encoding' in response.msg:
+        del response.msg['transfer-encoding']
     return response
 
 def paasproxy_handler(sock, address, hls={'setuplock':gevent.coros.Semaphore()}):
@@ -1441,7 +1451,7 @@ def socks5proxy_handler(sock, address, hls={'setuplock':gevent.coros.Semaphore()
         host = random.choice(hls['dns'][host])
     remote = socket.create_connection((host, port))
     if scheme == 'https':
-        remote = ssl.wrap_socket(remote)
+        remote = ssl.wrap_socket(remote, ssl_version=ssl.PROTOCOL_TLSv1)
     password = common.SOCKS5_PASSWORD.strip()
     bitmask = ord(os.urandom(1))
     digest = hmac.new(password, chr(bitmask)).hexdigest()
