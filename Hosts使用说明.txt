@@ -13,5 +13,7 @@ Ctrl+A 全选Ctrl+C复制再回到记事本中Ctrl+V 粘贴
 建议使用DNS 8.8.8.8/8.8.4.4
             114.114.114.114/114.114.115.115
 
+图文教学 http://chromelab.diandian.com/opengoogle
+
 
 ipv6hosts仅限ipv6用户使用 ipv4使用 后果自负。

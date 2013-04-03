@@ -1,12 +1,11 @@
 使用方法：
-一：配置Goagent
+一：配置Goagent+
 
-    1：打开点击生成Appid.cmd
-    2：打开Goagent.exe
+    1：打开Goagent+.exe即可
 
 二：配置浏览器
 支持IE Chrome Firefox Opera
-详情请打开https://skydrive.live.com/redir?resid=25133E62F9A30554!147
+详情请打开https://skydrive.live.com/redir?resid=25133E62F9A30554!161
 
 
 如果大家有不用的appid 欢迎捐赠
@@ -15,9 +14,11 @@
 
 非常感谢！
  
-光荣榜：
-huangzijian10.6@qq.com
-admin@sbl7.com
+光荣榜：（防跨省 已做和谐处理）
+huangxxxxx@qq.com
+adxxxxx@sbl7.com
+lxl.bxxxx@gmail.com
+593xxxxxxx@qq.com
 
 Tips:Goagent SmartLadder Custom Edition 太长了
 现已经更名为 Goagent Plus
@@ -27,4 +28,4 @@ Tips:Goagent SmartLadder Custom Edition 太长了
 https://code.google.com/p/smartladder/
 
 
-Copyleft 2013 Chrome吧
+Copyleft 2013 @Chrome实验室
