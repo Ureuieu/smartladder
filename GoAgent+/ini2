@@ -1,11 +1,4 @@
-[listen]
-ip = 127.0.0.1
-port = 8087
-visible = 0
-debuginfo = 0
-
-[gae]
-appid = |||vbtcozzhclannad|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||﻿
+﻿
 password = 
 path = /2
 profile = google_cn
@@ -17,7 +10,7 @@ enable = 1
 ip = 127.0.0.1
 port = 8086
 file = proxy.pac
-gfwlist = http://autoproxy-gfwlist.googlecode.com/svn/trunk/gfwlist.txt
+gfwlist = http://smartladder.googlecode.com/svn/trunk/gfwlist.txt
 
 [paas]
 enable = 0
@@ -93,9 +86,8 @@ server =
 
 [love]
 enable = 1
-timestamp = 1365161738
+timestamp = 
 tip = \u8bf7\u5173\u6ce8\u5317\u4eac\u5931\u5b66\u513f\u7ae5~~
 
 [hosts]
 www.253874.com = 
-
