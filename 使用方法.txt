@@ -1,27 +1,27 @@
-Ê¹ÓÃ·½·¨£º
+ï»¿ä½¿ç”¨æ–¹æ³•ï¼š
 
-Ò»£ºÅäÖÃGoagent+
+ä¸€ï¼šé…ç½®Goagent+
 
   
-1£º´ò¿ªGoagent+.exe¼´¿É
+1ï¼šæ‰“å¼€Goagent+.exeå³å¯
 
 
-¶ş£ºÅäÖÃä¯ÀÀÆ÷
-Ö§³ÖIE Chrome Firefox Opera
-ÏêÇéÇë´ò¿ªhttps://skydrive.live.com/redir?resid=25133E62F9A30554!161
+äºŒï¼šé…ç½®æµè§ˆå™¨
+æ”¯æŒIE Chrome Firefox Opera
+è¯¦æƒ…è¯·æ‰“å¼€https://skydrive.live.com/redir?resid=25133E62F9A30554!161
 
 
 
 
-Èç¹û´ó¼ÒÓĞ²»ÓÃµÄappid »¶Ó­¾èÔù
+å¦‚æœå¤§å®¶æœ‰ä¸ç”¨çš„appid æ¬¢è¿æèµ 
 
-ÓÊÏä kawaiiushio@gmail.com
+é‚®ç®± kawaiiushio@gmail.com
 
 
-·Ç³£¸ĞĞ»£¡
+éå¸¸æ„Ÿè°¢ï¼
  
 
-¹âÈÙ°ñ£º£¨·À¿çÊ¡ ÒÑ×öºÍĞ³´¦Àí£©
+å…‰è£æ¦œï¼šï¼ˆé˜²è·¨çœ å·²åšå’Œè°å¤„ç†ï¼‰
 
 huangxxxxx@qq.com
 
@@ -33,17 +33,17 @@ lxl.bxxxx@gmail.com
 
 
 
-Tips:Goagent SmartLadder Custom Edition Ì«³¤ÁË
-ÏÖÒÑ¾­¸üÃûÎª Goagent Plus
+Tips:Goagent SmartLadder Custom Edition å¤ªé•¿äº†
+ç°å·²ç»æ›´åä¸º Goagent Plus
 
 
-±¾ÏîÄ¿»ñµÃGFWÈÏÖ¤·ÃÎÊ²»ÁËÇë¹ÒHTTPS
+æœ¬é¡¹ç›®è·å¾—GFWè®¤è¯è®¿é—®ä¸äº†è¯·æŒ‚HTTPS
 
 
 https://code.google.com/p/smartladder/
 
 
-ĞÂÀËÎ¢²© @ÓêŒmÏ«@Kazuto_Kirigaya@·½Ğ£³¤@ChromeÊµÑéÊÒ
+æ–°æµªå¾®åš @é›¨å®®æ±@Kazuto_Kirigaya@æ–¹æ ¡é•¿@Chromeå®éªŒå®¤
 
 
 
